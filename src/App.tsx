@@ -1,7 +1,23 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonPage, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+
+//Redux
+import { Provider } from 'react-redux';
+
+//Auth
+import { AuthProvider } from './services/Auth';
+
+// Router Component
+import PrivateRoute from './services/PrivateRoute';
+
+// Pages
+import VideosPage from './pages/VideosPage';
+import store from './redux/store';
+import FilesPage from './pages/FilesPage';
+
+//Route
+import Login from './components/Login';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -11,6 +27,9 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
+/* Global CSS */
+import './global.css'
+
 /* Optional CSS utils that can be commented out */
 import '@ionic/react/css/padding.css';
 import '@ionic/react/css/float-elements.css';
@@ -18,23 +37,42 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+import history from './history';
+import Menu from './components/Menu/Menu';
 
-/* Theme variables */
-import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+
+
+const App: React.FC = () => {
+  return (
+    <Provider store={store}>
+      <IonApp>
+        <Menu></Menu>
+      <IonReactRouter history={history}>
+        <IonRouterOutlet id="main">
+
+          <Route exact path="/files" component={FilesPage} />
+          <Route path="/videos" component={VideosPage} />
+          <Redirect exact from="/" to="/files" />
+
+        </IonRouterOutlet>
+      </IonReactRouter>
+      </IonApp>
+    </Provider>
+  )
+  
+  /*(
+  <AuthProvider>
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={Home} />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  </AuthProvider>
+)*/
+};
 
 export default App;

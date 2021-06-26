@@ -1,0 +1,16 @@
+#filesContainer{
+    background-color: white;
+    width: 100vw;
+    height: max-content;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#addButtonContainer{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}

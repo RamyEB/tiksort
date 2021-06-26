@@ -1,0 +1,8 @@
+#container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: max-content;
+    flex-wrap: wrap;
+    border-top: solid black 1px ;
+}

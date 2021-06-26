@@ -4,7 +4,13 @@ const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
   appName: 'TikSort',
   webDir: 'build',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  plugins: {
+    GoogleAuth: {
+    scopes: ["profile","email"],
+    serverClientId: "38226866827-tm4o0npf3csef91s7pg6qskkb4stcni6.apps.googleusercontent.com"
+    }
+  }
 };
 
 export default config;

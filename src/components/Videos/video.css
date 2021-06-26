@@ -1,0 +1,10 @@
+.video{
+    width: calc(100vw/3);
+    height: calc(100vw/3*1.77777777778);
+    background-color: black;
+}
+
+.linkVideo{
+    width: calc(100vw/3);
+    height: calc(100vw/3*1.77777777778);
+}
